@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=TASA+Orbiter:wght@400..800&display=swap');
+
+body {
+    font-family: 'TASA Orbiter', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Chiron GoRound TC', sans-serif;
+}
