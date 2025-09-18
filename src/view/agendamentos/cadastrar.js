@@ -16,13 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (formAgendamento) {
-        formAgendamento.addEventListener('submit', async (event) => {
+        const modal = document.getElementById('confirmModal');
+        const confirmText = document.getElementById('confirmText');
+        const confirmButton = document.getElementById('confirmButton');
+        const cancelButton = document.getElementById('cancelButton');
+
+        let agendamentoData = null;
+
+        formAgendamento.addEventListener('submit', (event) => {
             event.preventDefault();
 
             statusMessage.classList.add('hidden');
 
             const formData = new FormData(formAgendamento);
-            const data = {
+            agendamentoData = {
                 pacienteId: formData.get('paciente_id'),
                 profissionalId: formData.get('profissional_id'),
                 dataAgendamento: formData.get('data_agendamento'),
@@ -31,11 +38,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 observacoes: formData.get('observacoes')
             };
 
+            const pacienteNome = formAgendamento.querySelector(`#paciente_id option[value="${agendamentoData.pacienteId}"]`)?.textContent || "";
+            const profissionalNome = formAgendamento.querySelector(`#profissional_id option[value="${agendamentoData.profissionalId}"]`)?.textContent || "";
+
+            confirmText.textContent =
+                `Paciente: ${pacienteNome}\nProfissional: ${profissionalNome}\nData: ${agendamentoData.dataAgendamento} às ${agendamentoData.horaAgendamento}\nTipo: ${agendamentoData.tipoAgendamento}`;
+
+            modal.classList.remove('hidden');
+        });
+
+        cancelButton.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        confirmButton.addEventListener('click', async () => {
+            modal.classList.add('hidden');
+
             try {
                 const response = await fetch('/api/agendamentos', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(agendamentoData)
                 });
 
                 const result = await response.json();
@@ -56,8 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const pacienteSelect = document.getElementById('paciente_id');
     const profissionalSelect = document.getElementById('profissional_id');
@@ -70,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             pacientes.forEach(p => {
                 const option = document.createElement('option');
-                option.value = p.pacienteId; // id vindo do model
+                option.value = p.pacienteId;
                 option.textContent = p.nomeCompleto;
                 pacienteSelect.appendChild(option);
             });
@@ -99,4 +120,3 @@ document.addEventListener('DOMContentLoaded', () => {
     carregarPacientes();
     carregarProfissionais();
 });
-

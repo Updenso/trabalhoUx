@@ -219,19 +219,16 @@
               <form id="formAgendamento" class="space-y-4 p-6 bg-white rounded-lg">
                 <!-- Paciente -->
                   <div>
-                    <label for="paciente_id" class="block text-sm font-medium text-gray-700">Paciente</label>
-                    <select id="paciente_id" name="paciente_id" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required>
-                      <option value="">Selecione...</option>
-                      <!-- Options preenchidas dinamicamente via JS -->
-                    </select>
+                    <label for="paciente_nome">Paciente</label>
+                    <input type="text" id="paciente_nome" value="Nome do Paciente" disabled class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-gray-100">
+                    <input type="hidden" id="paciente_id" name="paciente_id" value="123">
                   </div>
 
                   <!-- Profissional -->
                   <div>
-                    <label for="profissional_id" class="block text-sm font-medium text-gray-700">Profissional</label>
-                    <select id="profissional_id" name="profissional_id" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required>
-                      <option value="">Selecione...</option>
-                    </select>
+                    <label for="profissional_nome">Profissional</label>
+                    <input type="text" id="profissional_nome" value="Nome do Profissional" disabled class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-gray-100">
+                    <input type="hidden" id="profissional_id" name="profissional_id" value="456">
                   </div>
 
                     <!-- Data -->
@@ -272,8 +269,21 @@
                         Agendar
                       </button>
                     </div>
-                        </form>
+              </form>
+
+                        <!-- Modal de Confirmação -->
+                    <div id="confirmModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
+  <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
+    <h2 class="text-xl font-bold mb-4 text-gray-800">Confirmar Agendamento</h2>
+    <p class="text-gray-700 mb-4" id="confirmText"></p>
+    <div class="flex justify-end space-x-3">
+      <button id="cancelButton" class="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400">Cancelar</button>
+      <button id="confirmButton" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Confirmar</button>
+    </div>
+  </div>
                     </div>
+
+          </div>
         </main>
     </div>
     <script src="../script.js"></script>

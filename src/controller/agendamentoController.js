@@ -42,32 +42,55 @@ static visualizarAgendamentoPorId(req, res) {
     });
   }
 
-  static editarAgendamento(req, res) {
+static editarAgendamento(req, res) {
     const { id } = req.params;
     const dados = req.body;
 
-    console.log('Dados recebidos para edição:', dados);
-    console.log('ID do agendamento:', id);
-
-    // Validação adicional
-    if (!id || isNaN(id)) {
-        return res.status(400).json({ message: 'ID inválido.' });
+    // Bloquear alteração de paciente e profissional
+    if ('pacienteId' in dados || 'profissionalId' in dados) {
+        delete dados.pacienteId;
+        delete dados.profissionalId;
     }
 
-    Agendamento.editar(id, dados, (err, result) => {
+    // Primeiro, pegar os dados atuais do agendamento (incluindo nomes)
+    Agendamento.visualizarPorId(id, (err, results) => {
         if (err) {
-            console.error('Erro detalhado ao atualizar agendamento:', err);
-            return res.status(500).json({ 
-                message: 'Erro ao atualizar agendamento.',
-                error: err.message 
-            });
+            console.error('Erro ao buscar agendamento:', err);
+            return res.status(500).json({ message: 'Erro ao buscar agendamento.' });
         }
-        if (result.affectedRows === 0) {
+        if (results.length === 0) {
             return res.status(404).json({ message: 'Agendamento não encontrado.' });
         }
-        res.json({ message: 'Agendamento atualizado com sucesso!' });
+
+        const agendamento = results[0];
+        const pacienteNome = agendamento.paciente_nome;
+        const profissionalNome = agendamento.profissional_nome;
+
+        console.log('Paciente:', pacienteNome, 'Profissional:', profissionalNome);
+
+        // Atualizar somente os campos permitidos
+        Agendamento.editar(id, dados, (err, result) => {
+            if (err) {
+                console.error('Erro detalhado ao atualizar agendamento:', err);
+                return res.status(500).json({ 
+                    message: 'Erro ao atualizar agendamento.',
+                    error: err.message 
+                });
+            }
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ message: 'Agendamento não encontrado.' });
+            }
+
+            // Retornar nomes junto com a mensagem
+            res.json({ 
+                message: 'Agendamento atualizado com sucesso!',
+                pacienteNome,
+                profissionalNome
+            });
+        });
     });
-  }
+}
+
 
   static deletarAgendamento(req, res) {
     const { id } = req.params;

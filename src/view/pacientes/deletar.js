@@ -4,7 +4,7 @@ async function deletePatient(id) {
     }
 
     try {
-        const response = await fetch(`/api/paciente/${id}`, {
+        const response = await fetch(`/api/pacientes/${id}`, {
             method: 'DELETE'
         });
 

@@ -1,10 +1,10 @@
-async function deleteProfessional(id) {
+async function deleteProfissional(id) {
     if (!confirm('Tem certeza que deseja excluir este profissional?')) {
         return false; // Usuário cancelou a exclusão
     }
 
     try {
-        const response = await fetch(`/api/profissional/${id}`, {
+        const response = await fetch(`/api/profissionais/${id}`, {
             method: 'DELETE'
         });
 
@@ -25,4 +25,4 @@ async function deleteProfessional(id) {
     }
 }
 
-export { deleteProfessional }; 
+export { deleteProfissional }; 

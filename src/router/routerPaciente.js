@@ -7,6 +7,6 @@ routes.get('/pacientes', PacienteController.visualizarPacientes)
 routes.get('/pacientes/:id', PacienteController.visualizarPacientes)
 routes.post('/pacientes', PacienteController.adicionarPaciente)
 routes.put('/pacientes/:id', PacienteController.editarPaciente)
-routes.delete('/paciente/:id', PacienteController.deletarPaciente)
+routes.delete('/pacientes/:id', PacienteController.deletarPaciente)
 
 export default routes;
