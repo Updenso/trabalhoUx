@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         body.style.setProperty('background-color', '#dfe7f7ff', 'important'); // Cinza claro padrão
         if (isDashboard && mainTitle) {
-            mainTitle.style.setProperty('color', '#1F2937', 'important'); // Cinza original para o título do dashboard
+            mainTitle.style.setProperty('color', '#ffffffff', 'important'); // Cinza original para o título do dashboard
         }
     }
 

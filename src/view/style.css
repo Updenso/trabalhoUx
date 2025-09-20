@@ -7,3 +7,11 @@ body {
 h1, h2, h3 {
     font-family: 'Chiron GoRound TC', sans-serif;
 }
+
+.dropdown-menu {
+    display: none; /* começa escondido */
+}
+
+.dropdown-menu.show {
+    display: block; /* aparece ocupando espaço no fluxo */
+}

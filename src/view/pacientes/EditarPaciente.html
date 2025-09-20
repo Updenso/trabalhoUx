@@ -65,7 +65,7 @@
             <button id="logoutButton" class="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 focus:outline-none">Sair</button>
         </div>
     </div>
-</div>
+  </div>
     </header>
 
     <!-- Conteúdo Principal e Barra Lateral -->
@@ -208,7 +208,7 @@
 
         <!-- Conteúdo Principal - Formulário Adicionar Paciente -->
         <main class="flex-1 p-6 overflow-y-auto">
-            <div class="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto relative">
+            <div class="bg-white p-8 rounded-lg shadow-md w-full mx-auto relative">
                 <!-- Título e Botão Voltar -->
                 <div class="flex justify-between items-center mb-6">
                     <h2 id="mainTitle" class="text-2xl font-bold text-gray-800">Editar Paciente</h2>
@@ -221,84 +221,157 @@
                 <div id="statusMessage" class="mt-4 p-3 rounded-md text-sm font-medium text-center hidden"></div>
 
                 <form id="FormEditarPaciente" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-                    <!-- ID do Paciente (Campo somente leitura) -->
-                    <div>
-                        <label for="pacienteId" class="block text-sm font-medium text-gray-700 mb-1">ID do Paciente</label>
-                        <input type="text" id="pacienteId" name="pacienteId" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
-                    </div>
-                    <!-- Nome -->
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo <span class="text-red-500">*</span></label>
-                        <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
-                    </div>
-                 
-                    <!-- Data de Nascimento -->
-                    <div>
-                        <label for="dob" class="block text-sm font-medium text-gray-700 mb-1">Data de Aniversário <span class="text-red-500">*</span></label>
-                        <div class="relative">
-                            <input type="date" id="dob" name="dob" class="mt-1 block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
-                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h.01M7 16h.01M16 16h.01M16 12h.01M14 10H8m6 0H8m-2 6h.01M6 21h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
+                    
+                    <div class="md:col-span-2 p-6 bg-gray-50 rounded-lg border border-gray-200">
+                      <h4 class="text-lg font-semibold text-gray-800 mb-4">
+                        Dados Pessoais
+                      </h4>  
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                        <!-- ID do Paciente (Campo somente leitura) -->
+                        <div>
+                            <label for="pacienteId" class="block text-sm font-medium text-gray-700 mb-1">ID do Paciente</label>
+                            <input type="text" id="pacienteId" name="pacienteId" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                        </div>
+                        <!-- Nome -->
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo <span class="text-red-500">*</span></label>
+                            <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                        </div>
+                    
+                        <!-- Data de Nascimento -->
+                        <div>
+                            <label for="dob" class="block text-sm font-medium text-gray-700 mb-1">Data de Aniversário <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <input type="date" id="dob" name="dob" class="mt-1 block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h.01M7 16h.01M16 16h.01M16 12h.01M14 10H8m6 0H8m-2 6h.01M6 21h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Gênero -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Gênero: <span class="text-red-500">*</span></label>
-                        <div class="mt-1 flex items-center space-x-4">
-                            <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio text-blue-600" name="gender" value="Masculino" required>
-                                <span class="ml-2 text-gray-700">Masculino</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio text-blue-600" name="gender" value="Feminino" required>
-                                <span class="ml-2 text-gray-700">Feminino</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio text-blue-600" name="gender" value="Outro" required>
-                                <span class="ml-2 text-gray-700">Outro</span>
-                            </label>
-                        </div>
-                    </div>
-                    <!-- CPF -->
-                    <div>
-                        <label for="cpf" class="block text-sm font-medium text-gray-700 mb-1">CPF <span class="text-red-500">*</span></label>
-                        <input type="text" id="cpf" name="cpf" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="XXX.XXX.XXX-XX" required>
-                    </div>
-                    <!-- Email -->
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email <span class="text-red-500">*</span></label>
-                        <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
-                    </div>
-                    <!-- Telefone -->
-                    <div>
-                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Telefone <span class="text-red-500">*</span></label>
-                        <input type="tel" id="phone" name="phone" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="(XX) XXXXX-XXXX" required>
-                    </div>
-                    <!-- Endereço -->
-                    <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                        <!-- CPF -->
                         <div>
-                            <label for="rua" class="block text-sm font-medium text-gray-700 mb-1">Rua <span class="text-red-500">*</span></label>
-                            <input type="text" id="rua" name="rua" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                            <label for="cpf" class="block text-sm font-medium text-gray-700 mb-1">CPF <span class="text-red-500">*</span></label>
+                            <input type="text" id="cpf" name="cpf" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="XXX.XXX.XXX-XX" required>
+                        </div>
+                        <!-- Email -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email <span class="text-red-500">*</span></label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                        </div>
+                        <!-- Telefone -->
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Telefone <span class="text-red-500">*</span></label>
+                            <input type="tel" id="phone" name="phone" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="(XX) XXXXX-XXXX" required>
+                        </div>
+
+                        <!-- Gênero -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Gênero: <span class="text-red-500">*</span></label>
+                            <div class="mt-1 flex items-center space-x-4">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" class="form-radio text-blue-600 accent-blue-400" name="gender" value="Masculino" required>
+                                    <span class="ml-2 text-gray-700">Masculino</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" class="form-radio text-blue-600 accent-blue-400" name="gender" value="Feminino" required>
+                                    <span class="ml-2 text-gray-700">Feminino</span>
+                                </label>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  
+                    <!-- Seção de Endereço -->
+                    <div class="md:col-span-2 p-6 bg-gray-50 rounded-lg border border-gray-200">
+                      <h4 class="text-lg font-semibold text-gray-800 mb-4">Endereço</h4>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                        <div>
+                          <label
+                            for="cep"
+                            class="block text-sm font-medium text-gray-700 mb-1"
+                            >CEP <span class="text-red-500">*</span></label
+                          >
+                          <input
+                            type="text"
+                            id="cep"
+                            name="cep"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            required
+                          />
                         </div>
                         <div>
-                            <label for="numero" class="block text-sm font-medium text-gray-700 mb-1">Número <span class="text-red-500">*</span></label>
-                            <input type="text" id="numero" name="numero" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                          <label
+                            for="rua"
+                            class="block text-sm font-medium text-gray-700 mb-1"
+                            >Rua <span class="text-red-500">*</span></label
+                          >
+                          <input
+                            type="text"
+                            id="rua"
+                            name="rua"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            required
+                          />
                         </div>
                         <div>
-                            <label for="bairro" class="block text-sm font-medium text-gray-700 mb-1">Bairro <span class="text-red-500">*</span></label>
-                            <input type="text" id="bairro" name="bairro" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                          <label
+                            for="numero"
+                            class="block text-sm font-medium text-gray-700 mb-1"
+                            >Número <span class="text-red-500">*</span></label
+                          >
+                          <input
+                            type="text"
+                            id="numero"
+                            name="numero"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            required
+                          />
                         </div>
                         <div>
-                            <label for="cidade" class="block text-sm font-medium text-gray-700 mb-1">Cidade <span class="text-red-500">*</span></label>
-                            <input type="text" id="cidade" name="cidade" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                          <label
+                            for="bairro"
+                            class="block text-sm font-medium text-gray-700 mb-1"
+                            >Bairro <span class="text-red-500">*</span></label
+                          >
+                          <input
+                            type="text"
+                            id="bairro"
+                            name="bairro"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            required
+                          />
                         </div>
-                        <div class="md:col-span-2">
-                            <label for="estado" class="block text-sm font-medium text-gray-700 mb-1">Estado <span class="text-red-500">*</span></label>
-                            <input type="text" id="estado" name="estado" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                        <div>
+                          <label
+                            for="cidade"
+                            class="block text-sm font-medium text-gray-700 mb-1"
+                            >Cidade <span class="text-red-500">*</span></label
+                          >
+                          <input
+                            type="text"
+                            id="cidade"
+                            name="cidade"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            required
+                          />
                         </div>
+                        <div>
+                          <label
+                            for="estado"
+                            class="block text-sm font-medium text-gray-700 mb-1"
+                            >Estado <span class="text-red-500">*</span></label
+                          >
+                          <input
+                            type="text"
+                            id="estado"
+                            name="estado"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            required
+                          />
+                        </div>
+                      </div>
                     </div>
 
                     <!-- Histórico Médico -->

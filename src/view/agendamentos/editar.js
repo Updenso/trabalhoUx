@@ -42,49 +42,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         agendamentoOriginal = data.agendamento;
 
-        // Preencher paciente
+                // Preencher paciente
         if (agendamentoOriginal.paciente_id) {
             pacienteIdInput.value = agendamentoOriginal.paciente_id;
-
-            // Buscar nome do paciente
-            try {
-                const respPaciente = await fetch(`/api/pacientes/${agendamentoOriginal.paciente_id}`);
-                if (respPaciente.ok) {
-                    const pacienteData = await respPaciente.json();
-                    pacienteNomeInput.value = pacienteData.paciente.nome;
-                    pacienteNomeInput.disabled = true;
-                } else {
-                    pacienteNomeInput.value = 'Paciente não encontrado';
-                    pacienteNomeInput.disabled = true;
-                }
-            } catch (err) {
-                console.error('Erro ao buscar nome do paciente:', err);
-                pacienteNomeInput.value = 'Erro ao carregar';
-                pacienteNomeInput.disabled = true;
-            }
+            pacienteNomeInput.value = agendamentoOriginal.paciente_nome || 'Paciente não encontrado';
         }
 
         // Preencher profissional
         if (agendamentoOriginal.profissional_id) {
             profissionalIdInput.value = agendamentoOriginal.profissional_id;
-
-            // Buscar nome do profissional
-            try {
-                const respProf = await fetch(`/api/profissionais/${agendamentoOriginal.profissional_id}`);
-                if (respProf.ok) {
-                    const profData = await respProf.json();
-                    profissionalNomeInput.value = profData.profissional.nome;
-                    profissionalNomeInput.disabled = true;
-                } else {
-                    profissionalNomeInput.value = 'Profissional não encontrado';
-                    profissionalNomeInput.disabled = true;
-                }
-            } catch (err) {
-                console.error('Erro ao buscar nome do profissional:', err);
-                profissionalNomeInput.value = 'Erro ao carregar';
-                profissionalNomeInput.disabled = true;
-            }
+            profissionalNomeInput.value = agendamentoOriginal.profissional_nome || 'Profissional não encontrado';
         }
+
 
         // Campos editáveis
         if (agendamentoOriginal.data_agendamento) {
@@ -119,8 +88,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             dataAgendamento: formData.get('data_agendamento'),
             horaAgendamento: formData.get('hora_agendamento') + ':00',
             tipoAgendamento: formData.get('tipo_agendamento'),
-            observacoes: formData.get('observacoes'),
-            status: 'Agendado'
+            observacoes: formData.get('observacoes')
         };
 
         try {

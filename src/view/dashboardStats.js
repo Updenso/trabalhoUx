@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
             const result = await response.json();
 
-            if (result.agendamentos && Array.isArray(result.agendamentos)) {
-                appointmentsCountElement.textContent = result.agendamentos.length;
+            if (result.agendamento && Array.isArray(result.agendamento)) {
+                appointmentsCountElement.textContent = result.agendamento.length;
             } else {
                 appointmentsCountElement.textContent = 'Erro';
                 console.error('Formato de dados inesperado para agendamentos:', result);

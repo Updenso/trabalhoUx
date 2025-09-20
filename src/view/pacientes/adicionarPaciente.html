@@ -144,136 +144,134 @@
 
     <!-- Conteúdo Principal e Barra Lateral -->
     <div class="flex flex-1">
-      <aside
-        id="sidebar"
-        class="bg-white w-64 p-4 shadow-lg flex-shrink-0 transition-transform duration-300 ease-in-out transform -translate-x-full md:translate-x-0 absolute md:relative z-40 h-full"
-      >
+      <aside id="sidebar" class="bg-white w-64 p-4 shadow-lg flex-shrink-0
+     transition-transform duration-300 ease-in-out transform -translate-x-full md:translate-x-0 absolute md:relative z-40 h-full">
         <nav>
-        <ul>
-          <li class="mb-2">
-            <a
-              href="../dashboard.html"
-              class="flex items-center space-x-3 p-3 text-blue-700 font-semibold bg-blue-100 hover:bg-blue-200 rounded-md transition duration-200 ease-in-out"
-            >
-              <i class="fa-solid fa-house"></i>
-              <span>Principal</span>
-            </a>
-          </li>
-          <!-- Dropdown para Profissionais -->
-          <li class="mb-2 relative dropdown-container">
-            <button
-              class="flex items-center space-x-3 p-3 text-gray-700 hover:bg-gray-100 hover:text-blue-700 rounded-md transition duration-200 ease-in-out w-full text-left dropdown-toggle"
-            >
-              <i class="fa-solid fa-user-doctor"></i>
-              <span>Profissionais</span>
-              <!-- Ícone de seta para o dropdown -->
-              <svg
-                class="w-4 h-4 ml-auto transform transition-transform duration-200"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                ></path>
-              </svg>
-            </button>
-            <div
-              class="hidden dropdown-menu absolute left-0 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50"
-            >
+          <ul>
+            <li class="mb-2">
               <a
-                href="../profissionais/adicionarProfissional.html"
-                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                >Adicionar Profissional</a
+                href="../dashboard.html"
+                class="flex items-center space-x-3 p-3 text-blue-700 font-semibold bg-blue-100 hover:bg-blue-200 rounded-md transition duration-200 ease-in-out"
               >
-              <a
-                href="../profissionais/visualizarProfissional.html"
-                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                >visualizar Profissionais</a
+                <i class="fa-solid fa-house"></i>
+                <span>Principal</span>
+              </a>
+            </li>
+            <!-- Dropdown para Profissionais -->
+            <li class="mb-2 relative dropdown-container">
+              <button
+                class="flex items-center space-x-3 p-3 text-gray-700 hover:bg-gray-100 hover:text-blue-700 rounded-md transition duration-200 ease-in-out w-full text-left dropdown-toggle"
               >
-            </div>
-          </li>
-          <!-- Dropdown para Pacientes -->
-          <li class="mb-2 relative dropdown-container">
-            <button
-              class="flex items-center space-x-3 p-3 text-gray-700 hover:bg-gray-100 hover:text-blue-700 rounded-md transition duration-200 ease-in-out w-full text-left dropdown-toggle"
-            >
-              <i class="fa-solid fa-bed-pulse"></i>
-              <span>Pacientes</span>
-              <!-- Ícone de seta para o dropdown -->
-              <svg
-                class="w-4 h-4 ml-auto transform transition-transform duration-200"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+                <i class="fa-solid fa-user-doctor"></i>
+                <span>Profissionais</span>
+                <!-- Ícone de seta para o dropdown -->
+                <svg
+                  class="w-4 h-4 ml-auto transform transition-transform duration-200"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="hidden dropdown-menu absolute left-0 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                ></path>
-              </svg>
-            </button>
-            <div
-              class="hidden dropdown-menu absolute left-0 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50"
-            >
-              <a
-                href="../pacientes/adicionarPaciente.html"
-                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                >Adicionar Paciente</a
+                <a
+                  href="../profissionais/adicionarProfissional.html"
+                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                  >Adicionar Profissional</a
+                >
+                <a
+                  href="../profissionais/visualizarProfissional.html"
+                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                  >visualizar Profissionais</a
+                >
+              </div>
+            </li>
+            <!-- Dropdown para Pacientes -->
+            <li class="mb-2 relative dropdown-container">
+              <button
+                class="flex items-center space-x-3 p-3 text-gray-700 hover:bg-gray-100 hover:text-blue-700 rounded-md transition duration-200 ease-in-out w-full text-left dropdown-toggle"
               >
-              <a
-                href="../pacientes/visualizarPaciente.html"
-                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                >Visualizar Pacientes</a
+                <i class="fa-solid fa-bed-pulse"></i>
+                <span>Pacientes</span>
+                <!-- Ícone de seta para o dropdown -->
+                <svg
+                  class="w-4 h-4 ml-auto transform transition-transform duration-200"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="hidden dropdown-menu absolute left-0 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50"
               >
-            </div>
-          </li>
-          <!-- Dropdown para Agendamentos -->
-          <li class="mb-2 relative dropdown-container">
-            <button
-              class="flex items-center space-x-3 p-3 text-gray-700 hover:bg-gray-100 hover:text-blue-700 rounded-md transition duration-200 ease-in-out w-full text-left dropdown-toggle"
-            >
-              <i class="fa-solid fa-clipboard-list"></i>
-              <span>Agendamentos</span>
-              <!-- Ícone de seta para o dropdown -->
-              <svg
-                class="w-4 h-4 ml-auto transform transition-transform duration-200"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+                <a
+                  href="../pacientes/adicionarPaciente.html"
+                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                  >Adicionar Paciente</a
+                >
+                <a
+                  href="../pacientes/visualizarPaciente.html"
+                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                  >Visualizar Pacientes</a
+                >
+              </div>
+            </li>
+            <!-- Dropdown para Agendamentos -->
+            <li class="mb-2 relative dropdown-container">
+              <button
+                class="flex items-center space-x-3 p-3 text-gray-700 hover:bg-gray-100 hover:text-blue-700 rounded-md transition duration-200 ease-in-out w-full text-left dropdown-toggle"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                ></path>
-              </svg>
-            </button>
-            <div
-              class="hidden dropdown-menu absolute left-0 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50"
-            >
-              <a
-                href="../agendamentos/agendamentos.html"
-                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                >Novo Agendamento</a
+                <i class="fa-solid fa-clipboard-list"></i>
+                <span>Agendamentos</span>
+                <!-- Ícone de seta para o dropdown -->
+                <svg
+                  class="w-4 h-4 ml-auto transform transition-transform duration-200"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div
+                class="hidden dropdown-menu absolute left-0 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50"
               >
-              <a
-                href="../agendamentos/visualizarAgendamentos.html"
-                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                >Visualizar Agendamentos</a
-              >
-            </div>
-          </li>
-        </ul>
+                <a
+                  href="../agendamentos/agendamentos.html"
+                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                  >Novo Agendamento</a
+                >
+                <a
+                  href="../agendamentos/visualizarAgendamentos.html"
+                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                  >Visualizar Agendamentos</a
+                >
+              </div>
+            </li>
+          </ul>
         </nav>
       </aside>
 
@@ -284,15 +282,13 @@
       ></div>
 
       <!-- Conteúdo Principal - Formulário Adicionar Paciente -->
-      <main class="flex-1 p-6 overflow-y-auto">
-        <div
-          class="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto relative"
-        >
+      <main class="flex-1 p-4 overflow-y-auto">
+        <div class="bg-white p-8 rounded-lg shadow-md w-full mx-auto relative">
           <!-- Título e Botão Voltar -->
           <div class="flex justify-between items-center mb-6">
-            <h2 id="mainTitle" class="text-2xl font-bold text-gray-800">
-              Adicionar Paciente
-            </h2>
+            <h3 id="mainTitle" class="text-2xl font-bold text-gray-800">
+              Cadastrar Paciente
+            </h3>
             <button
               class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition duration-200 ease-in-out"
             >
@@ -312,223 +308,232 @@
             id="FormPaciente"
             class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4"
           >
-            <!-- Nome -->
-            <div>
-              <label
-                for="name"
-                class="block text-sm font-medium text-gray-700 mb-1"
-                >Nome Completo <span class="text-red-500">*</span></label
-              >
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                required
-              />
-            </div>
-
-            <!-- Data de Nascimento -->
-            <div>
-              <label
-                for="dob"
-                class="block text-sm font-medium text-gray-700 mb-1"
-                >Data de Aniversário <span class="text-red-500">*</span></label
-              >
-              <div class="relative">
-                <input
-                  type="date"
-                  id="dob"
-                  name="dob"
-                  class="mt-1 block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  required
-                />
-                <div
-                  class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
-                >
-                  <svg
-                    class="h-5 w-5 text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
+            <!-- Seção de Dados Pessoais -->
+            <div class="md:col-span-2 p-6 bg-gray-50 rounded-lg border border-gray-200">
+              <h4 class="text-lg font-semibold text-gray-800 mb-4">
+                Dados Pessoais
+              </h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                <!-- Nome -->
+                <div>
+                  <label
+                    for="name"
+                    class="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M8 7V3m8 4V3m-9 8h.01M7 16h.01M16 16h.01M16 12h.01M14 10H8m6 0H8m-2 6h.01M6 21h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    ></path>
-                  </svg>
+                    Nome Completo
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    required
+                  />
+                </div>
+                <!-- CPF -->
+                <div>
+                  <label
+                    for="cpf"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >CPF <span class="text-red-500">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="cpf"
+                    name="cpf"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    required
+                  />
+                </div>
+                <!-- Date of Birth -->
+                <div>
+                  <label
+                    for="dob"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Data de Aniversário</label
+                  >
+                  <div class="relative">
+                    <input
+                      type="date"
+                      id="dob"
+                      name="dob"
+                      class="mt-1 block w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    />
+                    <div
+                      class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
+                    >
+                      <svg
+                        class="h-5 w-5 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h.01M7 16h.01M16 16h.01M16 12h.01M14 10H8m6 0H8m-2 6h.01M6 21h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <!-- Email -->
+                <div>
+                  <label
+                    for="email"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Email <span class="text-red-500">*</span></label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    required
+                  />
+                </div>
+                <!-- Phone -->
+                <div>
+                  <label
+                    for="phone"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Telefone</label
+                  >
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  />
+                </div>
+                <!-- Gender -->
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">
+                    Gênero:
+                  </label>
+                  <div class="mt-1 flex items-center space-x-4">
+                    <label class="inline-flex items-center">
+                      <input
+                        type="radio"
+                        class="form-radio text-blue-600 accent-blue-400"
+                        name="gender"
+                        value="Maculino"
+                      />
+                      <span class="ml-2 text-gray-700">Masculino</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                      <input
+                        type="radio"
+                        class="form-radio text-blue-600 accent-blue-400"
+                        name="gender"
+                        value="Feminino"
+                      />
+                      <span class="ml-2 text-gray-700">Feminino</span>
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
-            <!-- Gênero -->
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1"
-                >Gênero: <span class="text-red-500">*</span></label
-              >
-              <div class="mt-1 flex items-center space-x-4">
-                <label class="inline-flex items-center">
+
+            <!-- Seção de Endereço -->
+            <div class="md:col-span-2 p-6 bg-gray-50 rounded-lg border border-gray-200">
+              <h4 class="text-lg font-semibold text-gray-800 mb-4">Endereço</h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                <div>
+                  <label
+                    for="cep"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >CEP <span class="text-red-500">*</span></label
+                  >
                   <input
-                    type="radio"
-                    class="form-radio text-blue-600"
-                    name="gender"
-                    value="Maculino"
+                    type="text"
+                    id="cep"
+                    name="cep"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required
                   />
-                  <span class="ml-2 text-gray-700">Maculino</span>
-                </label>
-                <label class="inline-flex items-center">
+                </div>
+                <div>
+                  <label
+                    for="rua"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Rua <span class="text-red-500">*</span></label
+                  >
                   <input
-                    type="radio"
-                    class="form-radio text-blue-600"
-                    name="gender"
-                    value="Feminino"
+                    type="text"
+                    id="rua"
+                    name="rua"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required
                   />
-                  <span class="ml-2 text-gray-700">Feminino</span>
-                </label>
-                <label class="inline-flex items-center">
+                </div>
+                <div>
+                  <label
+                    for="numero"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Número <span class="text-red-500">*</span></label
+                  >
                   <input
-                    type="radio"
-                    class="form-radio text-blue-600"
-                    name="gender"
-                    value="Outro"
+                    type="text"
+                    id="numero"
+                    name="numero"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required
                   />
-                  <span class="ml-2 text-gray-700">Outro</span>
-                </label>
+                </div>
+                <div>
+                  <label
+                    for="bairro"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Bairro <span class="text-red-500">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="bairro"
+                    name="bairro"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="cidade"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Cidade <span class="text-red-500">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="cidade"
+                    name="cidade"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="estado"
+                    class="block text-sm font-medium text-gray-700 mb-1"
+                    >Estado <span class="text-red-500">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="estado"
+                    name="estado"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    required
+                  />
+                </div>
               </div>
             </div>
-            <!-- CPF -->
-            <div>
-              <label
-                for="cpf"
-                class="block text-sm font-medium text-gray-700 mb-1"
-                >CPF <span class="text-red-500">*</span></label
-              >
-              <input
-                type="text"
-                id="cpf"
-                name="cpf"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                placeholder="XXX.XXX.XXX-XX"
-                required
-              />
-            </div>
-            <!-- Email -->
-            <div>
-              <label
-                for="email"
-                class="block text-sm font-medium text-gray-700 mb-1"
-                >Email <span class="text-red-500">*</span></label
-              >
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                required
-              />
-            </div>
-            <!-- Telefone -->
-            <div>
-              <label
-                for="phone"
-                class="block text-sm font-medium text-gray-700 mb-1"
-                >Telefone <span class="text-red-500">*</span></label
-              >
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                placeholder="(XX) XXXXX-XXXX"
-                required
-              />
-            </div>
-            <!-- Endereço -->
-            <div
-              class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4"
-            >
-              <div>
-                <label
-                  for="rua"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >Rua <span class="text-red-500">*</span></label
-                >
-                <input
-                  type="text"
-                  id="rua"
-                  name="rua"
-                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  for="numero"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >Número <span class="text-red-500">*</span></label
-                >
-                <input
-                  type="text"
-                  id="numero"
-                  name="numero"
-                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  for="bairro"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >Bairro <span class="text-red-500">*</span></label
-                >
-                <input
-                  type="text"
-                  id="bairro"
-                  name="bairro"
-                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  for="cidade"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >Cidade <span class="text-red-500">*</span></label
-                >
-                <input
-                  type="text"
-                  id="cidade"
-                  name="cidade"
-                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  required
-                />
-              </div>
-              <div class="md:col-span-2">
-                <label
-                  for="estado"
-                  class="block text-sm font-medium text-gray-700 mb-1"
-                  >Estado <span class="text-red-500">*</span></label
-                >
-                <input
-                  type="text"
-                  id="estado"
-                  name="estado"
-                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  required
-                />
-              </div>
-            </div>
+
             <!-- Histórico Médico -->
-            <div class="md:col-span-2">
+            <div class="md:col-span-2 mt-4">
               <label
                 for="medicalHistory"
                 class="block text-sm font-medium text-gray-700 mb-1"
-                >Historico Medico</label
+                >Histórico Médico</label
               >
               <textarea
                 id="medicalHistory"
@@ -537,6 +542,8 @@
                 class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               ></textarea>
             </div>
+
+            <!-- Botão de submissão do formulário -->
             <div class="col-span-2 justify-center text-center">
               <button
                 type="submit"

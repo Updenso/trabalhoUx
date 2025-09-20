@@ -4,8 +4,8 @@ class Agendamento {
   static adicionar(dados, callback) {
     const query = `
       INSERT INTO agendamento 
-        (paciente_id, profissional_id, data_agendamento, hora_agendamento, tipo_agendamento, observacoes, status) 
-      VALUES (?, ?, ?, ?, ?, ?, ?)
+        (paciente_id, profissional_id, data_agendamento, hora_agendamento, tipo_agendamento, observacoes) 
+      VALUES (?, ?, ?, ?, ?, ?)
     `;
     const values = [
       dados.pacienteId,
@@ -13,28 +13,23 @@ class Agendamento {
       dados.dataAgendamento,
       dados.horaAgendamento,
       dados.tipoAgendamento,
-      dados.observacoes || null,
-      dados.status || 'Pendente'
+      dados.observacoes || null
     ];
     db.query(query, values, callback);
   }
-
-  /*static visualizarTodos(callback) {
-    const query = `SELECT * FROM agendamento`;
-    db.query(query, callback);
-  }*/
 
   static visualizarPorId(id, callback) {
   const query = `
     SELECT 
       a.agendamento_id,
+      a.paciente_id,
+      a.profissional_id,
       p.nome_completo AS paciente_nome,
       prof.nome_completo AS profissional_nome,
       a.data_agendamento,
       a.hora_agendamento,
       a.tipo_agendamento,
-      a.observacoes,
-      a.status
+      a.observacoes
     FROM agendamento a
     LEFT JOIN paciente p ON a.paciente_id = p.paciente_id
     LEFT JOIN profissional prof ON a.profissional_id = prof.profissional_id
@@ -42,6 +37,8 @@ class Agendamento {
   `;
   db.query(query, [id], callback);
 }
+
+
   static editar(id, dados, callback) {
     const fields = [];
     const values = [];
@@ -52,8 +49,7 @@ class Agendamento {
       dataAgendamento: 'data_agendamento',
       horaAgendamento: 'hora_agendamento',
       tipoAgendamento: 'tipo_agendamento',
-      observacoes: 'observacoes',
-      status: 'status'
+      observacoes: 'observacoes'
     };
 
     for (const [key, column] of Object.entries(mapa)) {
@@ -87,15 +83,14 @@ class Agendamento {
       a.data_agendamento,
       a.hora_agendamento,
       a.tipo_agendamento,
-      a.observacoes,
-      a.status
+      a.observacoes
     FROM agendamento a
     LEFT JOIN paciente p ON a.paciente_id = p.paciente_id
     LEFT JOIN profissional prof ON a.profissional_id = prof.profissional_id
     ORDER BY a.data_agendamento, a.hora_agendamento
   `;
   db.query(query, callback);
-}
+  }
 
 }
 

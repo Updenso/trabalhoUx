@@ -36,9 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const result = await response.json();
 
-            if (result.agendamentos && result.agendamentos.length > 0) {
+            if (result.agendamento && result.agendamento.length > 0) {
                 appointmentsTableBody.innerHTML = '';
-                result.agendamentos.forEach(appointment => {
+                result.agendamento.forEach(appointment => {
                     const row = appointmentsTableBody.insertRow();
 
                     // ID
