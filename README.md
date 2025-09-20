@@ -59,7 +59,7 @@ Certifique-se de ter o seguinte software instalado em seu ambiente:
         host: 'localhost',
         user: 'seu_usuario_mysql', // Seu usuário do MySQL
         password: 'sua_senha_mysql', // Sua senha do MySQL
-        database: 'hms_db' // Nome do banco de dados que você criou
+        database: 'gestHospitalar' // Nome do banco de dados que você criou
     });
 
     connection.connect(err => {
