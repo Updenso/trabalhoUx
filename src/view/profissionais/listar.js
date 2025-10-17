@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     cell = row.insertCell();
                     cell.textContent = profissional.endereco; 
-                    cell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-700', 'border-r', 'border-gray-200');
+                    cell.classList.add('px-6', 'py-4', 'text-sm', 'text-gray-700', 'border-r', 'border-gray-200');
 
                     cell = row.insertCell();
                     cell.textContent = profissional.biografia;

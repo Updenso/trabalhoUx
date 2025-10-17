@@ -10,31 +10,145 @@ document.addEventListener('DOMContentLoaded', () => {
     const cepStatus = document.getElementById('cepStatus');
 
     // ===== Etapas do formulário =====
-    const steps = document.querySelectorAll('.step');
-    let currentStep = 1;
+    const tabs = document.querySelectorAll('.tab');
+    const etapas = document.querySelectorAll('.etapa');
+    const botaoAnterior = document.getElementById('botaoAnterior');
+    const botaoProximo = document.getElementById('botaoProximo');
+    let etapaAtual = 0;
 
-    function showStep(step) {
-        steps.forEach((el, index) => {
-            el.classList.toggle('active', index === step - 1);
+    // Função para mostrar a etapa atual
+    function mostrarEtapa(n) {
+        // Esconde todas as tabs
+        tabs.forEach(tab => {
+            tab.style.display = 'none';
         });
-        window.scrollTo(0, 0); // Rola para o topo da etapa
+
+        // Mostra a tab atual
+        if (tabs[n]) {
+            tabs[n].style.display = 'block';
+        }
+
+        // Atualiza o botão "Anterior"
+        if (n === 0) {
+            botaoAnterior.style.display = 'none';
+        } else {
+            botaoAnterior.style.display = 'inline-block';
+        }
+
+        // Atualiza o botão "Próximo" ou "Enviar"
+        if (n === tabs.length - 1) {
+            botaoProximo.textContent = 'Enviar';
+            botaoProximo.type = 'submit';
+            botaoProximo.onclick = null; // Remove o onclick para permitir o submit
+        } else {
+            botaoProximo.textContent = 'Próximo';
+            botaoProximo.type = 'button';
+            botaoProximo.onclick = () => proximoAnterior(1); // Adiciona o onclick
+        }
+
+        // Atualiza os indicadores de etapa
+        atualizarIndicadores(n);
+
+        // Rola para o topo
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    window.nextStep = () => {
-        if (currentStep < steps.length) {
-            currentStep++;
-            showStep(currentStep);
+    // Função para atualizar os indicadores visuais
+    function atualizarIndicadores(n) {
+        etapas.forEach((etapa, index) => {
+            etapa.classList.remove('ativo', 'concluido');
+            
+            if (index < n) {
+                etapa.classList.add('concluido');
+            } else if (index === n) {
+                etapa.classList.add('ativo');
+            }
+        });
+    }
+
+    // Função para validar campos obrigatórios da etapa atual
+    function validarEtapaAtual() {
+        const tabAtual = tabs[etapaAtual];
+        const camposObrigatorios = tabAtual.querySelectorAll('[required]');
+        let todosValidos = true;
+
+        camposObrigatorios.forEach(campo => {
+            campo.classList.remove('invalido');
+            
+            if (!campo.value.trim()) {
+                campo.classList.add('invalido');
+                todosValidos = false;
+            }
+        });
+
+        if (!todosValidos) {
+            mostrarMensagem('Por favor, preencha todos os campos obrigatórios.', 'erro');
         }
+
+        return todosValidos;
+    }
+
+    // Função para avançar ou voltar etapas
+    window.proximoAnterior = function(direcao) {
+        // Se está avançando, valida a etapa atual
+        if (direcao === 1) {
+            // Se está na última etapa, não avança (deixa o submit do form funcionar)
+            if (etapaAtual === tabs.length - 1) {
+                return;
+            }
+            
+            // Valida a etapa atual antes de avançar
+            if (!validarEtapaAtual()) {
+                return false;
+            }
+        }
+
+        // Esconde a mensagem de status ao mudar de etapa
+        if (statusMessage) {
+            statusMessage.classList.add('hidden');
+        }
+
+        // Atualiza a etapa atual
+        etapaAtual += direcao;
+
+        // Garante que não ultrapasse os limites
+        if (etapaAtual >= tabs.length) {
+            etapaAtual = tabs.length - 1;
+        } else if (etapaAtual < 0) {
+            etapaAtual = 0;
+        }
+
+        mostrarEtapa(etapaAtual);
     };
 
-    window.prevStep = () => {
-        if (currentStep > 1) {
-            currentStep--;
-            showStep(currentStep);
-        }
-    };
+    // Inicializa mostrando a primeira etapa
+    mostrarEtapa(etapaAtual);
 
-    showStep(currentStep);
+    // ===== Função para mostrar mensagens =====
+    function mostrarMensagem(texto, tipo) {
+        if (!statusMessage) return;
+
+        statusMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700', 'bg-blue-100', 'text-blue-700');
+        
+        if (tipo === 'sucesso') {
+            statusMessage.classList.add('bg-green-100', 'text-green-700');
+        } else if (tipo === 'erro') {
+            statusMessage.classList.add('bg-red-100', 'text-red-700');
+        } else {
+            statusMessage.classList.add('bg-blue-100', 'text-blue-700');
+        }
+
+        statusMessage.classList.add('block', 'p-3', 'rounded-md', 'text-center', 'mb-4');
+        statusMessage.textContent = texto;
+
+        // Auto-esconde mensagens de sucesso após 3 segundos
+        if (tipo === 'sucesso') {
+            setTimeout(() => {
+                statusMessage.classList.add('hidden');
+                statusMessage.textContent = '';
+            }, 3000);
+        }
+    }
 
     // ===== Função para formatar CEP =====
     const formatarCep = (cep) => cep.replace(/\D/g, '');
@@ -49,48 +163,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ===== Buscar CEP na API =====
     const buscarCep = async (cep) => {
-    const cepFormatado = formatarCep(cep);
-    if (cepFormatado.length !== 8) {
-        if (cepStatus) {
-            cepStatus.textContent = 'CEP inválido.';
-            cepStatus.className = 'flex justify-center align-center mt-1 text-sm text-red-500';
-        }
-        return;
-    }
-
-    if (cepStatus) {
-        cepStatus.textContent = 'Buscando CEP...';
-        cepStatus.className = 'mt-1 text-sm text-blue-500';
-    }
-
-    preencherEndereco({ logradouro: '', bairro: '', localidade: '', uf: '' });
-
-    try {
-        const resposta = await fetch(`https://viacep.com.br/ws/${cepFormatado}/json/`);
-        const data = await resposta.json();
-
-        if (data.erro) {
+        const cepFormatado = formatarCep(cep);
+        if (cepFormatado.length !== 8) {
             if (cepStatus) {
-                cepStatus.textContent = 'CEP não encontrado.';
+                cepStatus.textContent = 'CEP inválido.';
                 cepStatus.className = 'mt-1 text-sm text-red-500';
             }
             return;
         }
 
-        preencherEndereco(data);
         if (cepStatus) {
-            cepStatus.textContent = 'CEP encontrado com sucesso!';
-            cepStatus.className = 'flex justify-center align-center mt-1 text-sm text-green-500';
+            cepStatus.textContent = 'Buscando CEP...';
+            cepStatus.className = 'mt-1 text-sm text-blue-500';
         }
-    } catch (error) {
-        console.error('Erro ao buscar CEP:', error);
-        if (cepStatus) {
-            cepStatus.textContent = 'Erro ao buscar CEP. Tente novamente.';
-            cepStatus.className = 'mt-1 text-sm text-red-500';
-        }
-    }
-};
 
+        preencherEndereco({ logradouro: '', bairro: '', localidade: '', uf: '' });
+
+        try {
+            const resposta = await fetch(`https://viacep.com.br/ws/${cepFormatado}/json/`);
+            const data = await resposta.json();
+
+            if (data.erro) {
+                if (cepStatus) {
+                    cepStatus.textContent = 'CEP não encontrado.';
+                    cepStatus.className = 'mt-1 text-sm text-red-500';
+                }
+                return;
+            }
+
+            preencherEndereco(data);
+            if (cepStatus) {
+                cepStatus.textContent = 'CEP encontrado com sucesso!';
+                cepStatus.className = 'mt-1 text-sm text-green-500';
+            }
+        } catch (error) {
+            console.error('Erro ao buscar CEP:', error);
+            if (cepStatus) {
+                cepStatus.textContent = 'Erro ao buscar CEP. Tente novamente.';
+                cepStatus.className = 'mt-1 text-sm text-red-500';
+            }
+        }
+    };
 
     // ===== Eventos do CEP =====
     if (cepInput) {
@@ -101,91 +214,81 @@ document.addEventListener('DOMContentLoaded', () => {
 
         cepInput.addEventListener('input', (e) => {
             let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 5) value = value.substring(0, 5) + '-' + value.substring(5, 8);
+            if (value.length > 5) {
+                value = value.substring(0, 5) + '-' + value.substring(5, 8);
+            }
             e.target.value = value;
         });
     }
     
     // ===== Envio do formulário =====
-if (formProfissional) {
-    formProfissional.addEventListener('submit', async (event) => {
-        event.preventDefault();
+    if (formProfissional) {
+        formProfissional.addEventListener('submit', async (event) => {
+            event.preventDefault();
 
-        if (statusMessage) {
-            statusMessage.textContent = '';  // Limpa qualquer mensagem anterior
-            statusMessage.classList.add('hidden'); // Esconde o statusMessage
-        }
+            // Valida a última etapa antes de enviar
+            if (!validarEtapaAtual()) {
+                return;
+            }
 
-        const formData = new FormData(formProfissional);
-        const data = {
-            nomeCompleto: formData.get('name'),
-            email: formData.get('email'),
-            crm: formData.get('crm'),
-            dataNascimento: formData.get('dob'),
-            dataAdmissao: formData.get('joiningDate'),
-            telefone: formData.get('phone'),
-            genero: formData.get('gender'),
-            especialidade: formData.get('specialty'),
-            endereco: {
-                cep: formatarCep(formData.get('cep')),
-                rua: formData.get('rua'),
-                numero: formData.get('numero'),
-                bairro: formData.get('bairro'),
-                cidade: formData.get('cidade'),
-                estado: formData.get('estado')
-            },
-            biografia: formData.get('biography')
-        };
+            const formData = new FormData(formProfissional);
+            const data = {
+                nomeCompleto: formData.get('name'),
+                email: formData.get('email'),
+                crm: formData.get('crm'),
+                dataNascimento: formData.get('dob'),
+                dataAdmissao: formData.get('joiningDate'),
+                telefone: formData.get('phone'),
+                genero: formData.get('gender'),
+                especialidade: formData.get('specialty'),
+                endereco: {
+                    cep: formatarCep(formData.get('cep')),
+                    rua: formData.get('rua'),
+                    numero: formData.get('numero'),
+                    bairro: formData.get('bairro'),
+                    cidade: formData.get('cidade'),
+                    estado: formData.get('estado')
+                },
+                biografia: formData.get('biography')
+            };
 
-        try {
-            const response = await fetch('/api/profissionais', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
+            try {
+                const response = await fetch('/api/profissionais', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
 
-            const result = await response.json();
+                const result = await response.json();
 
-            if (statusMessage) {
                 if (response.ok) {
-                    statusMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700');
-                    statusMessage.classList.add('bg-green-100', 'text-green-700', 'block', 'p-3', 'rounded-md', 'text-center', 'mb-4');
-                    statusMessage.textContent = result.message || 'Profissional cadastrado com sucesso!';
+                    mostrarMensagem(result.message || 'Profissional cadastrado com sucesso!', 'sucesso');
 
-                    // Esconde a mensagem depois de 3 segundos
-                    setTimeout(() => {
-                        statusMessage.className = 'hidden';
-                        statusMessage.textContent = '';
-                    }, 3000);
+                    // Limpa o formulário
+                    formProfissional.reset();
+
+                    // Volta para a primeira etapa
+                    etapaAtual = 0;
+                    mostrarEtapa(etapaAtual);
+
+                    // Rola para o topo
+                    formProfissional.scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    statusMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700');
-                    statusMessage.classList.add('bg-red-100', 'text-red-700', 'block');
-                    statusMessage.textContent = result.message || 'Erro ao cadastrar profissional.';
+                    mostrarMensagem(result.message || 'Erro ao cadastrar profissional.', 'erro');
                 }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+                mostrarMensagem('Erro ao conectar com o servidor. Tente novamente.', 'erro');
             }
+        });
+    } else {
+        console.error('Formulário com ID "FormProfissional" não encontrado.');
+    }
 
-            if (response.ok) {
-                // Limpa os campos do formulário
-                formProfissional.reset();
-
-                // Reinicia a primeira etapa
-                currentStep = 1;
-                showStep(currentStep);
-
-                // Opcional: rola para o topo do formulário
-                formProfissional.scrollIntoView({ behavior: 'smooth' });
-            }
-        } catch (error) {
-            console.error('Erro na requisição:', error);
-            if (statusMessage) {
-                statusMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700');
-                statusMessage.classList.add('bg-red-100', 'text-red-700', 'block');
-                statusMessage.textContent = 'Erro ao conectar com o servidor. Tente novamente.';
-            }
-        }
+    // Remove classes 'invalido' quando o usuário começa a digitar
+    document.querySelectorAll('input[required], select[required], textarea[required]').forEach(campo => {
+        campo.addEventListener('input', () => {
+            campo.classList.remove('invalido');
+        });
     });
-} else {
-    console.error('Formulário com ID "FormProfissional" não encontrado.');
-}
-
 });
