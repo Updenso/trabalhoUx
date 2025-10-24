@@ -1,39 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
-    const currentTheme = localStorage.getItem('theme');
-    const mainTitle = document.getElementById('mainTitle');
-    const isDashboard = window.location.pathname.includes('dashboard.html');
-
-    // Aplica o tema salvo ou define o padrão
-    if (currentTheme === 'dark-theme') {
-        body.style.setProperty('background-color', '#111827', 'important'); // Azul escuro
-        if (isDashboard && mainTitle) {
-            mainTitle.style.setProperty('color', '#FFFFFF', 'important'); // Branco para o título do dashboard
-        }
-    } else {
-        body.style.setProperty('background-color', '#dfe7f7ff', 'important'); // Cinza claro padrão
-        if (isDashboard && mainTitle) {
-            mainTitle.style.setProperty('color', '#ffffffff', 'important'); // Cinza original para o título do dashboard
-        }
-    }
-
-    // Adiciona um listener ao botão de alternar tema, se ele existir
+    const currentTheme = localStorage.getItem('theme') || 'light-theme';
+    
+    // Aplica o tema salvo ao carregar a página
+    applyTheme(currentTheme);
+    
+    // Adiciona um listener ao botão de alternar tema
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
-            if (localStorage.getItem('theme') === 'dark-theme') {
-                body.style.setProperty('background-color', '#F3F4F6', 'important'); // Cinza claro padrão
-                localStorage.setItem('theme', 'light-theme');
-                if (isDashboard && mainTitle) {
-                    mainTitle.style.setProperty('color', '#1F2937', 'important'); // Cinza original para o título do dashboard
-                }
-            } else {
-                body.style.setProperty('background-color', '#111827', 'important'); // Azul escuro
-                localStorage.setItem('theme', 'dark-theme');
-                if (isDashboard && mainTitle) {
-                    mainTitle.style.setProperty('color', '#FFFFFF', 'important'); // Branco para o título do dashboard
-                }
-            }
+            const newTheme = localStorage.getItem('theme') === 'dark-theme' ? 'light-theme' : 'dark-theme';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
         });
     }
-}); 
+    
+    function applyTheme(theme) {
+        // Remove classes de tema anteriores
+        body.classList.remove('light-theme', 'dark-theme');
+        
+        // Adiciona a classe do tema atual
+        body.classList.add(theme);
+        
+        // Aplica cores específicas para o body
+        if (theme === 'dark-theme') {
+            body.style.setProperty('background-color', '#111827', 'important');
+            body.style.setProperty('color', '#000000ff', 'important');
+        } else {
+            body.style.setProperty('background-color', '#eeeeeeff', 'important');
+            body.style.setProperty('color', '#1f2937', 'important');
+        }
+    }
+});

@@ -1,39 +1,57 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Função para fechar todos os dropdowns abertos
-    function closeAllDropdowns() {
-        document.querySelectorAll('.dropdown-menu').forEach(menu => {
-            menu.classList.add('hidden');
-        });
-    }
-
-    // Adiciona um listener para cada botão de dropdown
-    document.querySelectorAll('.dropdown-toggle').forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.stopPropagation(); // Impede que o clique se propague para o document
-            const dropdownMenu = this.nextElementSibling; // O menu é o próximo irmão do botão
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownContainers = document.querySelectorAll('.dropdown-container');
+    
+    dropdownContainers.forEach(container => {
+        const toggle = container.querySelector('.dropdown-toggle');
+        const menu = container.querySelector('.dropdown-menu');
+        const arrow = toggle ? toggle.querySelector('svg:last-child') : null; // Pega apenas a última SVG (a seta)
+        
+        if (!toggle || !menu) return; // Segurança caso não encontre os elementos
+        
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             
-            // Fecha outros dropdowns, a menos que seja o mesmo dropdown sendo clicado novamente
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                if (menu !== dropdownMenu) {
-                    menu.classList.add('hidden');
+            const isHeaderDropdown = container.closest('header'); // Verifica se está no cabeçalho
+            const isSidebarDropdown = container.closest('aside'); // Verifica se está na sidebar
+            
+            // Fecha outros dropdowns do mesmo contexto
+            dropdownContainers.forEach(otherContainer => {
+                if (otherContainer !== container) {
+                    const otherMenu = otherContainer.querySelector('.dropdown-menu');
+                    const otherArrow = otherContainer.querySelector('.dropdown-toggle svg:last-child');
+                    
+                    if (otherMenu) {
+                        otherMenu.classList.add('hidden');
+                    }
+                    if (otherArrow) {
+                        otherArrow.classList.remove('rotate-180');
+                    }
                 }
             });
-
-            dropdownMenu.classList.toggle('hidden');
+            
+            // Alterna o dropdown atual
+            menu.classList.toggle('hidden');
+            if (arrow) {
+                arrow.classList.toggle('rotate-180');
+            }
         });
     });
-
-    // Fecha o dropdown se o clique for fora do menu ou de um botão de dropdown
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.dropdown-container')) { // Verifica se o clique não foi dentro de um container de dropdown
-            closeAllDropdowns();
+    
+    // Fecha dropdowns ao clicar fora
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.dropdown-container')) {
+            dropdownContainers.forEach(container => {
+                const menu = container.querySelector('.dropdown-menu');
+                const arrow = container.querySelector('.dropdown-toggle svg:last-child');
+                
+                if (menu) {
+                    menu.classList.add('hidden');
+                }
+                if (arrow) {
+                    arrow.classList.remove('rotate-180');
+                }
+            });
         }
-    });
-
-    // Fecha o dropdown se uma opção for clicada
-    document.querySelectorAll('.dropdown-menu a').forEach(item => {
-        item.addEventListener('click', function() {
-            closeAllDropdowns();
-        });
     });
 });

@@ -177,29 +177,26 @@
 
     <!-- Conteúdo Principal e Barra Lateral -->
     <div class="flex flex-1">
-      <aside
-        id="sidebar"
-        class="bg-white w-64 p-4 shadow-lg flex-shrink-0 transition-transform duration-300 ease-in-out transform -translate-x-full md:translate-x-0 absolute md:relative z-40 h-full"
-      >
+      <aside id="sidebar" class="bg-white w-64 p-4 shadow-lg flex-shrink-0 transition-transform duration-300 ease-in-out transform -translate-x-full md:translate-x-0 absolute md:relative z-40 h-full">
         <nav>
           <ul>
             <li class="mb-2">
-              <a
-                href="../dashboard.html"
+              
+              <a href="../dashboard.html"
                 class="flex items-center space-x-3 p-3 text-blue-700 font-semibold bg-blue-100 hover:bg-blue-200 rounded-md transition duration-200 ease-in-out"
               >
                 <i class="fa-solid fa-house"></i>
                 <span>Principal</span>
               </a>
             </li>
+            
             <!-- Dropdown para Profissionais -->
-            <li class="mb-2 relative dropdown-container">
+            <li class="mb-2 dropdown-container">
               <button
                 class="flex items-center space-x-3 p-3 text-gray-700 hover:bg-gray-100 hover:text-blue-700 rounded-md transition duration-200 ease-in-out w-full text-left dropdown-toggle"
               >
                 <i class="fa-solid fa-user-doctor"></i>
                 <span>Profissionais</span>
-                <!-- Ícone de seta para o dropdown -->
                 <svg
                   class="w-4 h-4 ml-auto transform transition-transform duration-200"
                   fill="none"
@@ -215,29 +212,25 @@
                   ></path>
                 </svg>
               </button>
-              <div
-                class="hidden dropdown-menu absolute left-0 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50"
-              >
-                <a
-                  href="../profissionais/adicionarProfissional.html"
-                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                  >Adicionar Profissional</a
-                >
-                <a
-                  href="../profissionais/visualizarProfissional.html"
-                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                  >visualizar Profissionais</a
-                >
+              <div class="hidden dropdown-menu overflow-hidden transition-all duration-300">
+                
+                <a href="../profissionais/adicionarProfissional.html"
+                  class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                  >Adicionar Profissional</a>
+                
+                <a  href="../profissionais/visualizarProfissional.html"
+                  class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                  >Visualizar Profissionais</a>
               </div>
             </li>
+            
             <!-- Dropdown para Pacientes -->
-            <li class="mb-2 relative dropdown-container">
+            <li class="mb-2 dropdown-container">
               <button
                 class="flex items-center space-x-3 p-3 text-gray-700 hover:bg-gray-100 hover:text-blue-700 rounded-md transition duration-200 ease-in-out w-full text-left dropdown-toggle"
               >
                 <i class="fa-solid fa-bed-pulse"></i>
                 <span>Pacientes</span>
-                <!-- Ícone de seta para o dropdown -->
                 <svg
                   class="w-4 h-4 ml-auto transform transition-transform duration-200"
                   fill="none"
@@ -253,29 +246,25 @@
                   ></path>
                 </svg>
               </button>
-              <div
-                class="hidden dropdown-menu absolute left-0 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50"
-              >
-                <a
-                  href="../pacientes/adicionarPaciente.html"
-                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                  >Adicionar Paciente</a
-                >
-                <a
-                  href="../pacientes/visualizarPaciente.html"
-                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                  >Visualizar Pacientes</a
-                >
+              <div class="hidden dropdown-menu overflow-hidden transition-all duration-300">
+                
+                <a href="../pacientes/adicionarPaciente.html"
+                  class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                  >Adicionar Paciente</a>
+                
+                <a  href="../pacientes/visualizarPaciente.html"
+                  class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                  >Visualizar Pacientes</a>
               </div>
             </li>
+            
             <!-- Dropdown para Agendamentos -->
-            <li class="mb-2 relative dropdown-container">
+            <li class="mb-2 dropdown-container">
               <button
                 class="flex items-center space-x-3 p-3 text-gray-700 hover:bg-gray-100 hover:text-blue-700 rounded-md transition duration-200 ease-in-out w-full text-left dropdown-toggle"
               >
                 <i class="fa-solid fa-clipboard-list"></i>
                 <span>Agendamentos</span>
-                <!-- Ícone de seta para o dropdown -->
                 <svg
                   class="w-4 h-4 ml-auto transform transition-transform duration-200"
                   fill="none"
@@ -291,19 +280,15 @@
                   ></path>
                 </svg>
               </button>
-              <div
-                class="hidden dropdown-menu absolute left-0 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50"
-              >
-                <a
-                  href="../agendamentos/agendamentos.html"
-                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                  >Novo Agendamento</a
-                >
-                <a
-                  href="../agendamentos/visualizarAgendamentos.html"
-                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                  >Visualizar Agendamentos</a
-                >
+              <div class="hidden dropdown-menu overflow-hidden transition-all duration-300">
+                
+                <a href="../agendamentos/agendamentos.html"
+                  class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                  >Novo Agendamento</a>
+                
+                <a href="../agendamentos/visualizarAgendamentos.html"
+                  class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
+                  >Visualizar Agendamentos</a>
               </div>
             </li>
           </ul>
