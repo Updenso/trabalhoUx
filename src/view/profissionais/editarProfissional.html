@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <link rel="icon" href="../logo.svg" type="image/svg+xml" />
+    <link rel="icon" href="../logo.png" type="image/svg+xml" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -19,125 +19,102 @@
         padding: 0;
         overflow-x: hidden; /* Evita rolagem horizontal */
       }
+       body.light-theme header svg {
+          color: #fff;
+        }
+
+        body.light-theme header span {
+          color: #fff;
+        }
+
+
+        body.dark-theme aside ul li button:hover {
+          background-color: oklch(54.6% 0.245 262.881); /* azul mais claro no hover */
+        }
+
+        body.dark-theme aside ul li button i {
+          color: #fff;
+        }
+
+        body.dark-theme aside ul li button svg {
+          color: #fff;
+        }
+
+        body.dark-theme .painel {
+           background-color: #1343A0;
+           
+        }
+        
+        body.dark-theme .painel h2 {
+          color: #fff;
+        }
+
+        body.dark-theme .painel span {
+          color: #fff;
+        }
+
+        body.dark-theme .painel form input {
+          color: #000;
+        }
+
+        body.dark-theme .painel form select {
+          color: #000;
+        }
+
+        body.dark-theme .painel form textarea {
+          color: #000;
+        }
+        body.dark-theme .painel form .biografia {
+          color: #fff;
+        }
+        body.dark-theme .painel form .genero {
+          color: #000;
+        }
     </style>
   </head>
   <body class="min-h-screen flex flex-col">
     <!-- Cabeçalho (Top Bar) -->
-    <header
-      class="bg-blue-500 text-white p-4 flex justify-between items-center shadow-md"
-    >
-      <!-- Logo e Menu Toggle -->
-      <div class="flex items-center space-x-4">
-        <!-- Botão de alternar sidebar para mobile (apenas em telas pequenas) -->
-        <button
-          id="mobileSidebarToggle"
-          class="md:hidden text-white focus:outline-none p-2 rounded-md hover:bg-blue-600 transition duration-200 ease-in-out"
-        >
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16m-7 6h7"
-            ></path>
-          </svg>
-        </button>
-        <!-- Logo do Sistema Hospitalar -->
-        <div
-          class="flex items-center space-x-2 text-xl font-bold rounded-md px-3 py-1"
-        >
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 4.354c.34-.326.696-.615 1.066-.867.75-.494 1.57-.84 2.44-.95.8-.1 1.6.03 2.37.36.77.33 1.48.83 2.05 1.48.57.65 1.01 1.42 1.29 2.29.28.87.37 1.79.27 2.7.07.9-.17 1.77-.6 2.5l-6 6a1 1 0 01-1.414 0l-6-6c-.43-.73-.67-1.6-.6-2.5-.1-.92-.01-1.84.27-2.7.28-.87.72-1.64 1.29-2.29.57-.65 1.28-1.15 2.05-1.48.77-.33 1.57-.46 2.37-.36.87.11 1.69.45 2.44.95A6.992 6.992 0 0012 4.354z"
-            ></path>
-          </svg>
-          <span>HMS</span>
+    <header class="bg-blue-500 text-white p-4 flex justify-between items-center shadow-md">
+        <!-- Logo e Menu Toggle -->
+        <div class="flex items-center space-x-4">
+            <!-- Botão de alternar sidebar para mobile (apenas em telas pequenas) -->
+            <button id="mobileSidebarToggle" class="md:hidden text-white focus:outline-none p-2 rounded-md hover:bg-blue-600 transition duration-200 ease-in-out">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <!-- Logo do Sistema Hospitalar -->
+            <div class="flex items-center space-x-2 text-xl font-bold rounded-md px-3 py-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354c.34-.326.696-.615 1.066-.867.75-.494 1.57-.84 2.44-.95.8-.1 1.6.03 2.37.36.77.33 1.48.83 2.05 1.48.57.65 1.01 1.42 1.29 2.29.28.87.37 1.79.27 2.7.07.9-.17 1.77-.6 2.5l-6 6a1 1 0 01-1.414 0l-6-6c-.43-.73-.67-1.6-.6-2.5-.1-.92-.01-1.84.27-2.7.28-.87.72-1.64 1.29-2.29.57-.65 1.28-1.15 2.05-1.48.77-.33 1.57-.46 2.37-.36.87.11 1.69.45 2.44.95A6.992 6.992 0 0012 4.354z"></path>
+                </svg>
+                <span>HMS</span>
+            </div>
         </div>
-      </div>
 
-      <div class="flex items-center space-x-4">
-        <!-- Ícone de Usuário/Admin -->
-        <div class="relative dropdown-container">
-          <button
-            class="flex items-center space-x-2 p-2 rounded-full hover:bg-blue-600 transition duration-200 ease-in-out focus:outline-none text-white dropdown-toggle"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-              ></path>
-            </svg>
-            <span class="hidden md:block">Configurações</span>
-            <svg
-              class="w-4 h-4 hidden md:block transform transition-transform duration-200"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              ></path>
-            </svg>
+      <!-- Ícone de Usuário/Admin -->
+      <div class="relative dropdown-container">
+          <button class="flex items-center space-x-2 p-2 rounded-full hover:bg-blue-600 transition duration-200 ease-in-out focus:outline-none text-white dropdown-toggle">
+              <i class="fa-solid fa-gear"></i>
+              <span class="hidden md:block">Configurações</span>
+              <svg class="w-4 h-4 hidden md:block transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
           </button>
           <!-- Dropdown de usuário (simulado) -->
-          <div
-            class="absolute right-0 w-48 bg-white border border-gray-200 rounded-md shadow-lg py-1 dropdown-menu hidden z-50"
-          >
-            <button
-              id="themeToggle"
-              class="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 focus:outline-none"
-            >
-              <svg
-                class="w-6 h-6 inline-block mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 3v1m0 16v1m9-9h1M4 12H3m15.325 3.325l-.707.707M5.368 5.368l-.707-.707M17.65 6.35l.707-.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                ></path>
-              </svg>
-              Alternar Tema
-            </button>
-            <button
-              id="logoutButton"
-              class="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 focus:outline-none"
-            >
-              Sair
-            </button>
+
+          <div class="absolute right-0 w-48 bg-white border border-gray-200 rounded-md shadow-lg py-1 dropdown-menu hidden z-50"> 
+              <button id="themeToggle" class="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 focus:outline-none">
+                  <svg class="w-6 h-6 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M4 12H3m15.325 3.325l-.707.707M5.368 5.368l-.707-.707M17.65 6.35l.707-.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                  </svg>
+                  Alternar Tema
+              </button>
+              <button id="logoutButton" class="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 focus:outline-none">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Sair
+              </button>
           </div>
-        </div>
       </div>
     </header>
 
@@ -147,10 +124,7 @@
         <nav>
           <ul>
             <li class="mb-2">
-              
-              <a href="../dashboard.html"
-                class="flex items-center space-x-3 p-3 text-blue-700 font-semibold bg-blue-100 hover:bg-blue-200 rounded-md transition duration-200 ease-in-out"
-              >
+              <a href="../dashboard.html" class="flex items-center space-x-3 p-3 text-blue-700 font-semibold bg-blue-100 hover:bg-blue-200 rounded-md transition duration-200 ease-in-out">
                 <i class="fa-solid fa-house"></i>
                 <span>Principal</span>
               </a>
@@ -179,14 +153,15 @@
                 </svg>
               </button>
               <div class="hidden dropdown-menu overflow-hidden transition-all duration-300">
-                
-                <a href="../profissionais/adicionarProfissional.html"
-                  class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                  >Adicionar Profissional</a>
-                
-                <a  href="../profissionais/visualizarProfissional.html"
-                  class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                  >Visualizar Profissionais</a>
+                  <a href="../profissionais/adicionarProfissional.html" class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 rounded-md hover:text-blue-700">
+                    <i class="fa-solid fa-plus"></i>
+                    Adicionar Profissional
+                  </a>
+
+                <a href="../profissionais/visualizarProfissional.html" class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 rounded-md hover:text-blue-700">
+                  <i class="fa-regular fa-eye"></i>
+                  Visualizar Profissionais
+                </a>
               </div>
             </li>
             
@@ -213,14 +188,15 @@
                 </svg>
               </button>
               <div class="hidden dropdown-menu overflow-hidden transition-all duration-300">
+                <a href="../pacientes/adicionarPaciente.html" class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 rounded-md hover:text-blue-700">
+                   <i class="fa-solid fa-plus"></i>
+                  Adicionar Paciente
+                </a>
                 
-                <a href="../pacientes/adicionarPaciente.html"
-                  class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                  >Adicionar Paciente</a>
-                
-                <a  href="../pacientes/visualizarPaciente.html"
-                  class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                  >Visualizar Pacientes</a>
+                <a  href="../pacientes/visualizarPaciente.html" class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 rounded-md hover:text-blue-700">
+                   <i class="fa-regular fa-eye"></i>
+                  Visualizar Pacientes
+                </a>
               </div>
             </li>
             
@@ -247,14 +223,15 @@
                 </svg>
               </button>
               <div class="hidden dropdown-menu overflow-hidden transition-all duration-300">
+                <a href="../agendamentos/agendamentos.html" class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 rounded-md hover:text-blue-700">
+                  <i class="fa-solid fa-plus"></i>
+                  Novo Agendamento
+                </a>
                 
-                <a href="../agendamentos/agendamentos.html"
-                  class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                  >Novo Agendamento</a>
-                
-                <a href="../agendamentos/visualizarAgendamentos.html"
-                  class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 hover:text-blue-700"
-                  >Visualizar Agendamentos</a>
+                <a href="../agendamentos/visualizarAgendamentos.html" class="block px-4 py-2 pl-12 text-gray-700 hover:bg-gray-100 rounded-md hover:text-blue-700">
+                  <i class="fa-regular fa-eye"></i>
+                  Visualizar Agendamentos
+                </a>
               </div>
             </li>
           </ul>
@@ -266,7 +243,7 @@
 
       <!-- Conteúdo Principal - Formulário Adicionar Profissional -->
       <main class="flex-1 p-6 overflow-y-auto">
-        <div class="bg-white p-8 rounded-lg shadow-md w-full mx-auto relative">
+        <div class="painel bg-white p-8 rounded-lg shadow-md w-full mx-auto relative">
           <!-- Título e Botão Voltar -->
           <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-gray-800">
@@ -447,7 +424,7 @@
                         name="gender"
                         value="Maculino"
                       />
-                      <span class="ml-2 text-gray-700">Maculino</span>
+                      <span class="genero ml-2 text-gray-700">Maculino</span>
                     </label>
                     <label class="inline-flex items-center">
                       <input
@@ -456,7 +433,7 @@
                         name="gender"
                         value="Feminino"
                       />
-                      <span class="ml-2 text-gray-700">Feminino</span>
+                      <span class="genero ml-2 text-gray-700">Feminino</span>
                     </label>
                   </div>
                 </div>
@@ -593,16 +570,13 @@
                   ></textarea>
                 </div>
                 <!-- Botão de submissão do formulário -->
-                <div class="col-span-2 flex justify-center">
-                  <button
-                    type="submit"
-                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-md transition duration-200 ease-in-out shadow-md"
-                  >
+                
+            </div>
+           <div class="col-span-2 flex justify-center">
+                  <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6  rounded-md transition duration-200 ease-in-out shadow-md">
                     Editar Profissional
                   </button>
-                </div>
             </div>
-           
 
             
           </form>
@@ -611,10 +585,10 @@
     </div>
 
     <!-- Script para controlar o sidebar em mobile -->
-    <script src="../script.js"></script>
     <script type="module" src="./editar.js"></script>
-    <script type="module" src="../dropdown.js"></script>
-    <script type="module" src="../themeSwitcher.js"></script>
-    <script type="module" src="../logout.js"></script>
+    <script src="../utils/script.js"></script>
+    <script type="module" src="../utils/dropdown.js"></script>
+    <script type="module" src="../utils/logout.js"></script>
+    <script type="module" src="../themes/themeForm.js"></script>
   </body>
 </html>
