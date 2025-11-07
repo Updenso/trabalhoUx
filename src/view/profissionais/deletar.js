@@ -1,28 +1,39 @@
-async function deleteProfissional(id) {
-    if (!confirm('Tem certeza que deseja excluir este profissional?')) {
-        return false; // Usuário cancelou a exclusão
-    }
+import { showSuccessAlert, showErrorAlert } from "../utils/alerts.js";
 
+async function deleteProfissional(id) {
     try {
+        const confirmar = await Swal.fire({
+            title: "Confirmar exclusão?",
+            text: "Você tem certeza que deseja excluir este profissional?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sim, excluir",
+            cancelButtonText: "Cancelar"
+        });
+
+        if (!confirmar.isConfirmed) {
+            return false;
+        }
+
         const response = await fetch(`/api/profissionais/${id}`, {
-            method: 'DELETE'
+            method: "DELETE"
         });
 
         const result = await response.json();
 
         if (response.ok) {
-            alert(result.message || 'Profissional excluído com sucesso!');
-            return true; // Exclusão bem-sucedida
+            await showSuccessAlert(result.message || "Profissional excluído com sucesso!");
+            return true;
         } else {
-            alert(result.message || 'Erro ao excluir profissional.');
-            console.error('Erro ao excluir profissional:', result.message);
-            return false; // Falha na exclusão
+            showErrorAlert(result.message || "Erro ao excluir profissional.");
+            return false;
         }
+
     } catch (error) {
-        console.error('Erro na requisição de exclusão:', error);
-        alert('Erro ao conectar com o servidor para excluir profissional. Tente novamente.');
-        return false; // Erro de conexão
+        console.error("Erro na requisição de exclusão:", error);
+        showErrorAlert("Erro ao conectar com o servidor. Tente novamente.");
+        return false;
     }
 }
 
-export { deleteProfissional }; 
+export { deleteProfissional };

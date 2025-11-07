@@ -1,28 +1,40 @@
+import { showSuccessAlert, showErrorAlert } from "../utils/alerts.js";
+
 async function deleteAgendamento(id) {
-    if (!confirm('Tem certeza que deseja excluir este agendamento?')) {
-        return false; // Usuário cancelou a exclusão
+    const confirmResult = await Swal.fire({
+        title: "Excluir Agendamento?",
+        text: "Essa ação não poderá ser desfeita.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sim, excluir",
+        cancelButtonText: "Cancelar"
+    });
+
+    if (!confirmResult.isConfirmed) {
+        return false; // Usuário cancelou
     }
 
     try {
         const response = await fetch(`/api/agendamentos/${id}`, {
-            method: 'DELETE'
+            method: "DELETE"
         });
 
         const result = await response.json();
 
         if (response.ok) {
-            alert(result.message || 'Agendamento excluído com sucesso!');
-            return true; // Exclusão bem-sucedida
+            showSuccessAlert(result.message || "Agendamento excluído com sucesso!");
+            return true;
         } else {
-            alert(result.message || 'Erro ao excluir agendamento.');
-            console.error('Erro ao excluir agendamento:', result.message);
-            return false; // Falha na exclusão
+            showErrorAlert(result.message || "Erro ao excluir agendamento.");
+            console.error("Erro ao excluir agendamento:", result.message);
+            return false;
         }
+
     } catch (error) {
-        console.error('Erro na requisição de exclusão:', error);
-        alert('Erro ao conectar com o servidor para excluir agendamento. Tente novamente.');
-        return false; // Erro de conexão
+        console.error("Erro na requisição de exclusão:", error);
+        showErrorAlert("Erro ao conectar com o servidor. Tente novamente.");
+        return false;
     }
 }
 
-export { deleteAgendamento }; 
+export { deleteAgendamento };

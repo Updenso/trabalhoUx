@@ -1,19 +1,7 @@
+import { showSuccessAlert, showErrorAlert } from "../utils/alerts.js";
+
 document.addEventListener('DOMContentLoaded', () => {
     const formAgendamento = document.getElementById('formAgendamento');
-    const statusMessage = document.getElementById('statusMessage');
-
-    function showMessage(message, type = 'success') {
-        statusMessage.textContent = message;
-        statusMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
-
-        if (type === 'success') {
-            statusMessage.classList.add('bg-green-100', 'text-green-700');
-        } else {
-            statusMessage.classList.add('bg-red-100', 'text-red-700');
-        }
-
-        statusMessage.classList.remove('hidden');
-    }
 
     if (formAgendamento) {
         const modal = document.getElementById('confirmModal');
@@ -25,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         formAgendamento.addEventListener('submit', (event) => {
             event.preventDefault();
-
-            statusMessage.classList.add('hidden');
 
             const formData = new FormData(formAgendamento);
             agendamentoData = {
@@ -64,14 +50,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const result = await response.json();
 
                 if (response.ok) {
-                    showMessage(result.message || 'Agendamento cadastrado com sucesso!', 'success');
+                    showSuccessAlert(result.message || 'Agendamento cadastrado com sucesso!');
                     formAgendamento.reset();
                 } else {
-                    showMessage(result.message || 'Erro ao cadastrar agendamento.', 'error');
+                    showErrorAlert(result.message || 'Erro ao cadastrar agendamento.');
                 }
             } catch (error) {
                 console.error('Erro na requisição:', error);
-                showMessage('Erro ao conectar com o servidor. Tente novamente.', 'error');
+                showErrorAlert('Erro ao conectar com o servidor. Tente novamente.');
             }
         });
     } else {

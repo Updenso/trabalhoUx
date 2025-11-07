@@ -16,6 +16,51 @@
             font-family: 'Inter', sans-serif;
             background-color: #f3f4f6; /* Cor de fundo cinza clara */
         }
+         body.light-theme header svg {
+          color: #fff;
+        }
+
+        body.light-theme header span {
+          color: #fff;
+        }
+
+
+        body.dark-theme aside ul li button:hover {
+          background-color: oklch(54.6% 0.245 262.881); /* azul mais claro no hover */
+        }
+
+        body.dark-theme aside ul li button i {
+          color: #fff;
+        }
+
+        body.dark-theme aside ul li button svg {
+          color: #fff;
+        }
+
+        body.dark-theme .painel {
+           background-color: #1343A0;
+           
+        }
+        
+        body.dark-theme .painel h3 {
+          color: #fff;
+        }
+
+        body.dark-theme .painel span {
+          color: #fff;
+        }
+
+        body.dark-theme .painel form input {
+          color: #000;
+        }
+
+        body.dark-theme .painel form select {
+          color: #000;
+        }
+
+        body.dark-theme .painel form .genero {
+          color: #000;
+        }
 
     </style>
 </head>
@@ -255,6 +300,7 @@
     </div>
 
     <!-- Script para controlar o sidebar em mobile -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="./deletar.js"></script>
     <script type="module" src="./listar.js"></script>
     <script src="../utils/script.js"></script>
